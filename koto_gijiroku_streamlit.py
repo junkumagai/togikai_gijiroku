@@ -1,4 +1,5 @@
 import random
+
 # from collections import Counter
 from datetime import datetime, timedelta, timezone
 
@@ -148,7 +149,7 @@ iinkai_list = iinkai_list_temp["委員会"]
 # random_l = random.choice(l)
 
 option_selected_g = st.selectbox(
-    "初回は代表例として「議席番号1番の金子議員のワードクラウド」を自動生成。描画完了までおよそ10秒お待ちください。表示完了後、下記のリストボックスより他の議員を選択できます。（表示は議席番号順）",
+    "初回読み込み時は「議席番号1番議員」のワードクラウド」を生成。表示完了後、リストボックスより他の議員を選択できます。（表示は議席番号順）",
     giin_list,
     index=0,
 )
@@ -673,7 +674,7 @@ print("occurrence of substring ats:", words.count("ats"))
 
 st.subheader("感謝")
 st.markdown(
-    "プログラムソースは、-議員見える化プロジェクト@東京都中央区 https://bit.ly/3Bqfcy0 を作られた[ほづみゆうき](https://twitter.com/ninofku)さんにご提供いただきました。GlideやStreamlitを駆使して華麗にWEBアプリで可視化する、その行動力に敬服します。ありがとうございます。"
+    "プログラムソースは、-議員見える化プロジェクト@東京都中央区 https://bit.ly/3Bqfcy0 を作られた[ほづみゆうき](https://twitter.com/ninofku)さんにご提供いただきました。GlideやStreamlitを駆使して華麗にWEBアプリで可視化する、その技術力と行動力に敬服します。ありがとうございます。"
 )
 
 
