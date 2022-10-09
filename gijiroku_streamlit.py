@@ -1,4 +1,5 @@
 import random
+from collections import Counter
 
 import MeCab
 import pandas as pd
@@ -6,22 +7,15 @@ import streamlit as st
 from PIL import Image
 from st_aggrid import AgGrid
 
-# from collections import Counter
-
-
 mecab = MeCab.Tagger()
-# mecab = MeCab.Tagger(
-#     "-r /etc/mecabrc -d /usr/lib/x86_64-linux-gnu/mecab/dic/mecab-ipadic-neologd"
-# )
-
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 
 font_path = 'ShipporiMinchoB1-ExtraBold.ttf'
 #import datetime
 from datetime import datetime, timedelta, timezone
 
-# import altair as alt
+import altair as alt
 
 st.set_page_config(layout="wide")
 st.title(':face_with_monocle:  議会見える化プロジェクト(β)@東京都中央区')
@@ -35,11 +29,11 @@ image = Image.open('jigazo.png')
 st.image(image,width=100)
 st.markdown('**作った人：[ほづみゆうき](https://twitter.com/ninofku)**')
 
-logs = pd.read_csv('./koto_gijiroku2015-2022.9.csv', encoding='UTF-8')#dataframeとしてcsvを読み込み
-giin_list_temp = pd.read_csv('./koto_giin2015-2021.csv', encoding='UTF-8')
+logs = pd.read_csv('./gijiroku2015-2022.5.csv', encoding='UTF-8')#dataframeとしてcsvを読み込み
+giin_list_temp = pd.read_csv('./giin2015-2021.csv', encoding='UTF-8')
 giin_list = giin_list_temp['氏名']
 
-iinkai_list_temp = pd.read_csv('./koto_iinkai2015-2021.csv', encoding='UTF-8')
+iinkai_list_temp = pd.read_csv('./iinkai2015-2021.csv', encoding='UTF-8')
 iinkai_list = iinkai_list_temp['委員会']
 
 st.header(':clipboard: 使い方')
@@ -75,6 +69,9 @@ else:
 
 
 
+
+
+
 st.header(':fork_and_knife: 検索条件')
 
 # 議員選択
@@ -91,14 +88,10 @@ st.experimental_set_query_params(giin=str(option_selected_g))
 #委員会選択
 with st.expander("■「会議体」での絞り込み", False):
 #st.markdown(' ##### :books:「会議体」での絞り込み')
-        # option_selected_i = st.multiselect(
-        # '「XXXX委員会」とかの会議体で結果を絞りたい場合は使ってみてください。初期値では全部が選択されてます。',
-        # iinkai_list,
-        # ['臨時会','環境建設委員会','企画総務委員会','区民文教委員会','少子高齢化対策特別委員会','築地等まちづくり及び地域活性化対策特別委員会','東京オリンピック・パラリンピック対策特別委員会','福祉保健委員会','防災等安全対策特別委員会','定例会','決算特別委員会','予算特別委員会','子ども子育て・高齢者対策特別委員会','築地等地域活性化対策特別委員会','全員協議会','コロナウイルス・防災等対策特別委員会','懲罰特別委員会','東京2020大会・晴海地区公共施設整備対策特別委員会'])
         option_selected_i = st.multiselect(
         '「XXXX委員会」とかの会議体で結果を絞りたい場合は使ってみてください。初期値では全部が選択されてます。',
         iinkai_list,
-        ['オリンピック・パラリンピック対策特別委員会','オリンピック・パラリンピック推進特別委員会','まちづくり・南北交通対策特別委員会','予算審査特別委員会','企画総務委員会','区民環境委員会','医療・介護・高齢者支援特別委員会','医療・介護保険制度特別委員会','厚生委員会','地下鉄８号線延伸・交通対策推進特別委員会','定例会','建設委員会','文教委員会','決算審査特別委員会','清掃港湾・臨海部対策特別委員会','臨時会','議会運営委員会','防災・まちづくり・交通対策特別委員会','防災・まちづくり対策特別委員会','防災対策特別委員会','高齢者支援・介護保険制度特別委員会'])
+        ['臨時会','環境建設委員会','企画総務委員会','区民文教委員会','少子高齢化対策特別委員会','築地等まちづくり及び地域活性化対策特別委員会','東京オリンピック・パラリンピック対策特別委員会','福祉保健委員会','防災等安全対策特別委員会','定例会','決算特別委員会','予算特別委員会','子ども子育て・高齢者対策特別委員会','築地等地域活性化対策特別委員会','全員協議会','コロナウイルス・防災等対策特別委員会','懲罰特別委員会','東京2020大会・晴海地区公共施設整備対策特別委員会'])
         st.markdown('　※ 政治家を選択せずに絞り込みを設定すると勝手に人が変わっちゃいます。その場合は政治家を選択してください。')
 option_selected_i = '|'.join(option_selected_i)
 
