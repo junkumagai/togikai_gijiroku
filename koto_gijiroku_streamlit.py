@@ -75,7 +75,6 @@ else:
 
 
 
-
 st.header(':fork_and_knife: 検索条件')
 
 # 議員選択
