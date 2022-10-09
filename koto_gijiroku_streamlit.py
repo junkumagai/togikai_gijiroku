@@ -74,7 +74,6 @@ else:
     option_selected_g = option_selected_g_temp
 
 
-
 st.header(':fork_and_knife: 検索条件')
 
 # 議員選択
