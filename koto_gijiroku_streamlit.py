@@ -1,5 +1,4 @@
 import random
-
 # from collections import Counter
 from datetime import datetime, timedelta, timezone
 
@@ -79,7 +78,7 @@ iinkai_list = iinkai_list_temp["委員会"]
 
 
 # st.header(":fork_and_knife: 検索条件")
-st.subheader("議員を選択")
+# st.subheader("議員を選択")
 
 # # ボタンを押すとランダムで選択
 # if st.button("もう一度ランダムに選択する"):
@@ -99,65 +98,66 @@ st.subheader("議員を選択")
 #     "政治家の名前をどれか選択してください。選んだ政治家の結果が表示されます。", giin_list
 # )
 
-l = [
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19,
-    20,
-    21,
-    22,
-    23,
-    24,
-    25,
-    26,
-    27,
-    28,
-    29,
-    30,
-    31,
-    32,
-    33,
-    34,
-    35,
-    36,
-    37,
-    38,
-    39,
-    40,
-    41,
-    42,
-    43,
-    44,
-    45,
-]
-random_l = random.choice(l)
+# l = [
+#     1,
+#     2,
+#     3,
+#     4,
+#     5,
+#     6,
+#     7,
+#     8,
+#     9,
+#     10,
+#     11,
+#     12,
+#     13,
+#     14,
+#     15,
+#     16,
+#     17,
+#     18,
+#     19,
+#     20,
+#     21,
+#     22,
+#     23,
+#     24,
+#     25,
+#     26,
+#     27,
+#     28,
+#     29,
+#     30,
+#     31,
+#     32,
+#     33,
+#     34,
+#     35,
+#     36,
+#     37,
+#     38,
+#     39,
+#     40,
+#     41,
+#     42,
+#     43,
+#     44,
+#     45,
+# ]
+# random_l = random.choice(l)
 
-option_selected_g = st.radio(
-    "初回は例として議席番号1番の金子議員のワードクラウドを自動作成します。描画完了までおよそ10秒。ラジオボタンから他の議員を選択できます。（表示は議席番号順）",
+option_selected_g = st.selectbox(
+    "初回は代表例として「議席番号1番の金子議員のワードクラウド」を自動生成。描画完了までおよそ10秒お待ちください。表示完了後、下記のリストボックスより他の議員を選択できます。（表示は議席番号順）",
     giin_list,
     index=0,
 )
 
-st.write(
-    "<style>div.row-widget.stRadio > div{flex-direction:row;}</style>",
-    unsafe_allow_html=True,
-)
+# st.write(
+#     "<style>div.row-widget.stRadio > div{flex-direction:row;}</style>",
+#     unsafe_allow_html=True,
+# )
+
 
 # st.write(option_selected_g, "議員のワードクラウドを作成中です。上のプルダウンリストから議員を選択できます。")
 
@@ -165,7 +165,7 @@ st.write(
 st.experimental_set_query_params(giin=str(option_selected_g))
 
 # 委員会選択
-with st.expander("「会議体」を選択", True):
+with st.expander("「会議体」を選択できます。", False):
     # st.markdown(' ##### :books:「会議体」での絞り込み')
     # option_selected_i = st.multiselect(
     # '「XXXX委員会」とかの会議体で結果を絞りたい場合は使ってみてください。初期値では全部が選択されてます。',
@@ -208,7 +208,7 @@ f.close()
 option_selected_i_txt = open("temp_iinkai.txt", encoding="utf8").read()
 
 # st.markdown(' ##### :date:「年度」での絞り込み')
-with st.expander("「期間」を選択", True):
+with st.expander("「期間」も選択できます。", False):
     # 年度選択
     start_year, end_year = st.select_slider(
         "初期値では検索可能な全ての年度が選択されてます。設定変更後に改めて対象議員を指定してください。",
