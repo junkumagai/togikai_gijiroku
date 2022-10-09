@@ -671,7 +671,7 @@ print("occurrence of substring ats:", words.count("ats"))
 
 # st.image(image, width=100)
 
-st.subheader("感謝desu")
+st.subheader("感謝")
 st.markdown(
     "プログラムソースは、-議員見える化プロジェクト@東京都中央区 https://bit.ly/3Bqfcy0 を作られた[ほづみゆうき](https://twitter.com/ninofku)さんにご提供いただきました。GlideやStreamlitを駆使して華麗にWEBアプリで可視化する、その行動力に敬服します。ありがとうございます。"
 )
