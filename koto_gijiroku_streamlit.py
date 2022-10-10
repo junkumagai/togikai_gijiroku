@@ -184,6 +184,7 @@ with st.expander("「会議体」を選択できます。", False):
     option_selected_i = st.multiselect(
         # "初期は全ての会議体が選択されてます。設定変更後に改めて対象議員を指定してください。",
         "初期値は全ての会議体が選択されてます。",
+        iinkai_list,
         [
             "オリンピック・パラリンピック対策特別委員会",
             "オリンピック・パラリンピック推進特別委員会",
@@ -208,8 +209,8 @@ with st.expander("「会議体」を選択できます。", False):
             "高齢者支援・介護保険制度特別委員会",
         ],
     )
-#     st.markdown("　※ 政治家を選択せずに絞り込みを設定すると勝手に人が変わっちゃいます。その場合は政治家を選択してください。")
-option_selected_i = "|".join(option_selected_i)
+    #     st.markdown("　※ 政治家を選択せずに絞り込みを設定すると勝手に人が変わっちゃいます。その場合は政治家を選択してください。")
+    option_selected_i = "|".join(option_selected_i)
 
 # 委員会選択のテキスト化（後の条件付けのため
 f = open("temp_iinkai.txt", "w")  # textに書き込み
