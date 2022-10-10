@@ -5,6 +5,7 @@ import time
 
 # from collections import Counter
 from datetime import datetime, timedelta, timezone
+from time import sleep
 
 import MeCab
 import pandas as pd
@@ -152,20 +153,23 @@ iinkai_list = iinkai_list_temp["委員会"]
 # random_l = random.choice(l)
 
 
-option_selected_g = st.selectbox(
+# option_selected_g = st.selectbox(
+#     # "初回読み込み時は「議席番号1番議員」のワードクラウド」を生成。表示完了後、リストボックスより他の議員を選択できます。（表示は議席番号順）",
+#     "リストボックスより議員を選択してください。（選択がなければ自動でサンプルを表示します）",
+#     giin_list,
+#     # index=0,
+# )
+
+option_selected_g = st.radio(
     # "初回読み込み時は「議席番号1番議員」のワードクラウド」を生成。表示完了後、リストボックスより他の議員を選択できます。（表示は議席番号順）",
-    "リストボックスより議員を選択してください。（選択がなければ自動でサンプルを表示します）",
+    "議員を選択してください。（初回起動時は自動でサンプルを表示します）",
     giin_list,
     # index=0,
 )
-
-
-time.sleep(5)
-
-# st.write(
-#     "<style>div.row-widget.stRadio > div{flex-direction:row;}</style>",
-#     unsafe_allow_html=True,
-# )
+st.write(
+    "<style>div.row-widget.stRadio > div{flex-direction:row;}</style>",
+    unsafe_allow_html=True,
+)
 
 
 # st.write(option_selected_g, "議員のワードクラウドを作成中です。上のプルダウンリストから議員を選択できます。")
@@ -249,9 +253,8 @@ with st.expander("「期間」を選択できます。", False):
         value=("2019", "2022"),
     )
     # st.markdown("　※ 政治家を選択せずに絞り込みを設定すると勝手に人が変わっちゃいます。その場合は政治家を選択してください。")
-
-start_year = int(start_year)
-end_year = int(end_year)
+    start_year = int(start_year)
+    end_year = int(end_year)
 
 
 # logs_contents_temp = logs[(logs['人分類'].str.contains(option_selected_g)) & (logs['委員会'].str.contains(option_selected_i_txt)) & (logs['内容分類']== "質問" ) & (logs['年度'] >= start_year) & (logs['年度'] <= end_year)]
@@ -274,6 +277,22 @@ logs_contents_temp_moji = logs_contents_temp_moji["文字数"]
 # st.header(":cake: 結果表示")
 # st.subheader("結果表示")
 # st.markdown('　「:fork_and_knife: 検索条件」で設定した範囲での発言内容についての結果が表示されます。')
+
+
+my_bar = st.progress(0)
+time.sleep(0.05)
+for percent_complete in range(100):
+    time.sleep(0.05)
+    my_bar.progress(percent_complete + 1)
+
+
+def sec_to_min_sec(t):
+    min = int(t / 60)
+    sec = int(t - min * 60)
+    return min, sec
+
+
+t1 = time.time()
 
 
 # ワードクラウド作成
@@ -300,9 +319,9 @@ JST = timezone(timedelta(hours=+9), "JST")
 dt_now = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
 
 st.write(
-    "**【議員名】**",
+    "**【分析した議員名】**",
     option_selected_g,
-    "**【表示年】**",
+    "**【分析期間】**",
     str(start_year),
     "-",
     str(end_year),
@@ -575,6 +594,20 @@ st.image("wc.png")
 #     "補足：更新するたびに表示位置などはビミョーに変わります。対象は名詞だけで、「それぞれ」や「問題」など、頻繁に使われるけど中身のないキーワードは除外してます。"
 # )
 
+
+# 最後尾に追加
+t2 = time.time()
+min, sec = sec_to_min_sec(t2 - t1)
+st.info(f"ワードクラウド描画完了までの時間 : {sec} sec")
+
+# b0 = time()
+# st.subheader("Not using st.cache")
+
+# st.write(load_data_b())
+# b1 = time()
+# st.info(b1 - b0)
+
+
 # 集計文字数表示
 st.metric(label="計測した発言文字数", value=f"{len(text)} 文字")
 
@@ -643,7 +676,6 @@ with st.expander("解析対象のテキスト", True):
         ],
     }
     AgGrid(logs_contents_temp_show, grid_options)
-
 
 # print(text.most_common(5))
 # text2 = collections.Counter(text)
