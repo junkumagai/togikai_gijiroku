@@ -557,7 +557,6 @@ stpwds = [
     "たくさん",
 ]
 
-
 wc = WordCloud(
     stopwords=stpwds,
     width=1000,
