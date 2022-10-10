@@ -1,4 +1,7 @@
+import os
 import random
+import subprocess
+import time
 
 # from collections import Counter
 from datetime import datetime, timedelta, timezone
@@ -148,11 +151,16 @@ iinkai_list = iinkai_list_temp["委員会"]
 # ]
 # random_l = random.choice(l)
 
+
 option_selected_g = st.selectbox(
-    "初回読み込み時は「議席番号1番議員」のワードクラウド」を生成。表示完了後、リストボックスより他の議員を選択できます。（表示は議席番号順）",
+    # "初回読み込み時は「議席番号1番議員」のワードクラウド」を生成。表示完了後、リストボックスより他の議員を選択できます。（表示は議席番号順）",
+    "リストボックスより議員を選択してください。（選択がなければ自動でサンプルを表示します）",
     giin_list,
-    index=0,
+    # index=0,
 )
+
+
+time.sleep(5)
 
 # st.write(
 #     "<style>div.row-widget.stRadio > div{flex-direction:row;}</style>",
@@ -163,7 +171,8 @@ option_selected_g = st.selectbox(
 # st.write(option_selected_g, "議員のワードクラウドを作成中です。上のプルダウンリストから議員を選択できます。")
 
 # 選択した議員の名前をURLに表示。表示はできるけど、URLから初期値として表示ができず
-st.experimental_set_query_params(giin=str(option_selected_g))
+# st.experimental_set_query_params(giin=str(option_selected_g))
+
 
 # 委員会選択
 with st.expander("「会議体」を選択できます。", False):
@@ -173,8 +182,8 @@ with st.expander("「会議体」を選択できます。", False):
     # iinkai_list,
     # ['臨時会','環境建設委員会','企画総務委員会','区民文教委員会','少子高齢化対策特別委員会','築地等まちづくり及び地域活性化対策特別委員会','東京オリンピック・パラリンピック対策特別委員会','福祉保健委員会','防災等安全対策特別委員会','定例会','決算特別委員会','予算特別委員会','子ども子育て・高齢者対策特別委員会','築地等地域活性化対策特別委員会','全員協議会','コロナウイルス・防災等対策特別委員会','懲罰特別委員会','東京2020大会・晴海地区公共施設整備対策特別委員会'])
     option_selected_i = st.multiselect(
-        "初期は全ての会議体が選択されてます。設定変更後に改めて対象議員を指定してください。",
-        iinkai_list,
+        # "初期は全ての会議体が選択されてます。設定変更後に改めて対象議員を指定してください。",
+        "初期値は全ての会議体が選択されてます。",
         [
             "オリンピック・パラリンピック対策特別委員会",
             "オリンピック・パラリンピック推進特別委員会",
@@ -209,10 +218,11 @@ f.close()
 option_selected_i_txt = open("temp_iinkai.txt", encoding="utf8").read()
 
 # st.markdown(' ##### :date:「年度」での絞り込み')
-with st.expander("「期間」も選択できます。", False):
+with st.expander("「期間」を選択できます。", False):
     # 年度選択
     start_year, end_year = st.select_slider(
-        "初期値では検索可能な全ての年度が選択されてます。設定変更後に改めて対象議員を指定してください。",
+        # "初期値では検索可能な全ての年度が選択されてます。設定変更後に改めて対象議員を指定してください。",
+        "初期値は検索可能な全ての年度が選択されてます。",
         options=[
             "2003",
             "2004",
@@ -241,6 +251,7 @@ with st.expander("「期間」も選択できます。", False):
 
 start_year = int(start_year)
 end_year = int(end_year)
+
 
 # logs_contents_temp = logs[(logs['人分類'].str.contains(option_selected_g)) & (logs['委員会'].str.contains(option_selected_i_txt)) & (logs['内容分類']== "質問" ) & (logs['年度'] >= start_year) & (logs['年度'] <= end_year)]
 logs_contents_temp = logs[
@@ -571,7 +582,7 @@ with st.expander("発言文字数の推移", True):
     # st.markdown('　#### :chart_with_upwards_trend: 年度単位での発言文字数の推移')
     # st.markdown("　それぞれの年度でどの程度発言されているのかを推移を示したものです。")
     # チャート作成
-    st.bar_chart(logs_contents_temp_moji)
+    st.bar_chart(logs_contents_temp_moji, width=0, use_container_width=True)
     # table作成
 with st.expander("解析対象のテキスト", True):
     # st.markdown('　#### :open_book: 解析対象の文字列')
