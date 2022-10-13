@@ -15,6 +15,8 @@ from wordcloud import WordCloud
 mecab = MeCab.Tagger()
 font_path = "ShipporiMinchoB1-ExtraBold.ttf"
 
+st.set_page_config(layout="centered", initial_sidebar_state="auto")
+
 st.title("議会見える化＠江東区")
 
 
