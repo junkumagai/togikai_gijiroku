@@ -127,11 +127,24 @@ logs_contents_temp_moji = logs_contents_temp.groupby("年度").sum()  # 年度�
 # 文字カウント
 logs_contents_temp_moji = logs_contents_temp_moji["文字数"]
 
-my_bar = st.progress(0)
-time.sleep(0.01)
-for percent_complete in range(100):
-    time.sleep(0.01)
-    my_bar.progress(percent_complete + 1)
+# my_bar = st.progress(0)
+# time.sleep(0.01)
+# for percent_complete in range(100):
+#     time.sleep(0.01)
+#     my_bar.progress(percent_complete + 1)
+
+# status_text = st.empty()
+# # プログレスバー
+# progress_bar = st.progress(0)
+
+# for i in range(100):
+#     status_text.text(f"Progress: {i}%")
+#     # for ループ内でプログレスバーの状態を更新する
+#     progress_bar.progress(i + 1)
+#     time.sleep(0.1)
+
+# status_text.text("Done!")
+# st.balloons()
 
 
 def sec_to_min_sec(t):
@@ -166,9 +179,9 @@ JST = timezone(timedelta(hours=+9), "JST")
 dt_now = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
 
 st.write(
-    "**【分析した議員名】**",
+    "**【分析中の議員】**",
     option_selected_g,
-    "**【分析期間】**",
+    "**【対象期間】**",
     str(start_year),
     "-",
     str(end_year),
@@ -751,9 +764,9 @@ wc = WordCloud(
     # colormap=c_map,
     # colormap='coolwarm',
     font_path=font_path,
-    prefer_horizontal=0.92,
-    include_numbers=False,
-    max_words=1000,
+    prefer_horizontal=0.94,
+    # include_numbers=False,
+    max_words=400,
 )
 wc.generate(words)
 wc.to_file("wc.png")
@@ -762,7 +775,7 @@ st.image("wc.png")
 # 最後尾に追加
 t2 = time.time()
 min, sec = sec_to_min_sec(t2 - t1)
-st.info(f"ワードクラウド描画完了までの時間 : {sec} sec")
+st.info(f"ワードクラウド描画完了までの時間 : {sec} 秒")
 
 # b0 = time()
 # st.subheader("Not using st.cache")
