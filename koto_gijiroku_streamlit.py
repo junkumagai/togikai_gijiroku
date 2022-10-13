@@ -105,7 +105,7 @@ with st.expander("「期間」を選択できます。", False):
             "2021",
             "2022",
         ],
-        value=("2019", "2022"),
+        value=("2003", "2022"),
     )
 
     start_year = int(start_year)
