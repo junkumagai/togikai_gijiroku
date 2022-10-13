@@ -179,15 +179,17 @@ JST = timezone(timedelta(hours=+9), "JST")
 dt_now = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
 
 st.write(
-    "**【分析中の議員】**",
+    "【分析中の議員】",
     option_selected_g,
-    "**【対象期間】**",
+    "【期間】",
     str(start_year),
     "-",
     str(end_year),
-    "**【作成日】**",
-    dt_now,
 )
+
+#     "**【作成日】**",
+#     dt_now,
+# )
 
 stpwds = [
     "視点",
