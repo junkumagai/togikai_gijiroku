@@ -15,7 +15,8 @@ from wordcloud import WordCloud
 mecab = MeCab.Tagger()
 font_path = "ShipporiMinchoB1-ExtraBold.ttf"
 
-st.title("議会見える化＠江東区 ver. 0.9.3")
+st.title("議会見える化＠江東区")
+
 
 logs = pd.read_csv(
     "./koto_gijiroku2015-2022.9.csv", encoding="UTF-8"
@@ -748,7 +749,7 @@ wc = WordCloud(
     # colormap=c_map,
     # colormap='coolwarm',
     font_path=font_path,
-    prefer_horizontal=0.94,
+    prefer_horizontal=0.92,
     include_numbers=False,
     max_words=1000,
 )
@@ -840,3 +841,5 @@ st.subheader("感謝")
 st.markdown(
     "プログラムソースは、-議員見える化プロジェクト@東京都中央区 https://bit.ly/3Bqfcy0 を作られた[ほづみゆうき](https://twitter.com/ninofku)さんにご提供いただきました。GlideやStreamlitを駆使して華麗にWEBアプリで可視化する、その技術力と行動力に敬服します。ありがとうございます。"
 )
+
+st.markdown("20221013　ver. 0.9.3")
