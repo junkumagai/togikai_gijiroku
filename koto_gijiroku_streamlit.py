@@ -32,7 +32,7 @@ iinkai_list = iinkai_list_temp["委員会"]
 
 option_selected_g = st.radio(
     # "初回読み込み時は「議席番号1番議員」のワードクラウド」を生成。表示完了後、リストボックスより他の議員を選択できます。（表示は議席番号順）",
-    "議員を選択してください。（初回は自動でサンプルを表示）",
+    "議員を選択してください。（初回は自動でサンプル表示）",
     giin_list,
     # index=0,
 )
@@ -42,9 +42,9 @@ st.write(
 )
 
 # 委員会選択
-with st.expander("「会議体」を選択できます。", False):
+with st.expander("「会議体」を選択（初期値は全て）", False):
     option_selected_i = st.multiselect(
-        "初期値は全ての会議体が選択されてます。",
+        "会議体を選択して絞り込むことができます。",
         iinkai_list,
         [
             "オリンピック・パラリンピック対策特別委員会",
@@ -79,10 +79,10 @@ f.close()
 option_selected_i_txt = open("temp_iinkai.txt", encoding="utf8").read()
 
 # st.markdown(' ##### :date:「年度」での絞り込み')
-with st.expander("「期間」を選択できます。", False):
+with st.expander("「期間」を選択（初期値は全ての年度）", False):
     # 年度選択
     start_year, end_year = st.select_slider(
-        "初期値は検索可能な全ての年度が選択されてます。",
+        "分析対象期間をスライダーで絞り込むことができます。",
         options=[
             "2003",
             "2004",
