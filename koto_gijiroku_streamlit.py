@@ -32,7 +32,7 @@ iinkai_list = iinkai_list_temp["委員会"]
 
 option_selected_g = st.radio(
     # "初回読み込み時は「議席番号1番議員」のワードクラウド」を生成。表示完了後、リストボックスより他の議員を選択できます。（表示は議席番号順）",
-    "議員を選択してください。（初回は自動でサンプル表示）",
+    "議員を選択して「分析する」ボタンを押してください。",
     giin_list,
     # index=0,
 )
@@ -40,6 +40,8 @@ st.write(
     "<style>div.row-widget.stRadio > div{flex-direction:row;}</style>",
     unsafe_allow_html=True,
 )
+
+st.button("選択した議員の発言を分析する！")
 
 # 委員会選択
 with st.expander("「会議体」を選択（初期値は全て）", False):
@@ -1070,4 +1072,4 @@ st.markdown(
     "プログラムソースは、-議員見える化プロジェクト@東京都中央区 https://bit.ly/3Bqfcy0 を作られた[ほづみゆうき](https://twitter.com/ninofku)さんにご提供いただきました。GlideやStreamlitを駆使して華麗にWEBアプリで可視化する、その技術力と行動力に敬服します。ありがとうございます。"
 )
 
-st.markdown("20221013　ver. 0.9.3")
+st.markdown("20221015　ver. 0.9.31　分析ボタン（処理中断）追加")
