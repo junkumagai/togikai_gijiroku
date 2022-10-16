@@ -17,7 +17,7 @@ font_path = "ShipporiMinchoB1-ExtraBold.ttf"
 
 st.set_page_config(layout="centered", initial_sidebar_state="auto")
 
-st.title("議員見える化＠江東区")
+st.title("発言見える化＠江東区")
 
 
 logs = pd.read_csv(
@@ -1031,7 +1031,7 @@ wc = WordCloud(
     font_path=font_path,
     prefer_horizontal=0.94,
     # include_numbers=False,
-    max_words=400,
+    max_words=300,
 )
 wc.generate(words)
 wc.to_file("wc.png")
