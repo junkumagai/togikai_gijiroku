@@ -17,7 +17,7 @@ font_path = "ShipporiMinchoB1-ExtraBold.ttf"
 
 st.set_page_config(layout="centered", initial_sidebar_state="auto")
 
-st.title("議会見える化＠江東区")
+st.title("議員見える化＠江東区")
 
 
 logs = pd.read_csv(
@@ -32,7 +32,7 @@ iinkai_list = iinkai_list_temp["委員会"]
 
 option_selected_g = st.radio(
     # "初回読み込み時は「議席番号1番議員」のワードクラウド」を生成。表示完了後、リストボックスより他の議員を選択できます。（表示は議席番号順）",
-    "議員を選択して「分析する」ボタンを押してください。",
+    "議員を選択（初回は冒頭議員をサンプル表示）",
     giin_list,
     # index=0,
 )
@@ -41,7 +41,7 @@ st.write(
     unsafe_allow_html=True,
 )
 
-st.button("選択した議員の発言を分析する！")
+# st.button("選択した議員の発言を分析する！")
 
 # 委員会選択
 with st.expander("「会議体」を選択（初期値は全て）", False):
@@ -649,6 +649,56 @@ stpwds = [
     "手段",
     "同じ",
     "感じ",
+    "ア",
+    "イ",
+    "ウ",
+    "可決",
+    "一部",
+    "改正",
+    "エ",
+    "件",
+    "cid",
+    "策",
+    "制度",
+    "更",
+    "オ",
+    "区議会",
+    "取組み",
+    "条例",
+    "向上",
+    "連携",
+    "体制",
+    "効果",
+    "設置",
+    "□",
+    "〇",
+    "契約",
+    "協議",
+    "答",
+    "問",
+    "強化",
+    "相手方",
+    "陳情",
+    "審議",
+    "確保",
+    "補正予算",
+    "職員",
+    "開催",
+    "回答",
+    "君",
+    "番",
+    "事項",
+    "令和4年",
+    "令和4年度",
+    "東京",
+    "知事",
+    "都民",
+    "議長",
+    "三宅",
+    "しげき君",
+    "審査",
+    "報告書",
+    "旨",
 ]
 
 
@@ -1015,6 +1065,7 @@ with st.expander("解析対象のテキスト", True):
                 "field": "年月日",
                 "suppressSizeToFit": True,
                 "autoHeight": True,
+                "maxWidth": 100,
             },
             {
                 "headerName": "会議名",
@@ -1022,7 +1073,7 @@ with st.expander("解析対象のテキスト", True):
                 "suppressSizeToFit": True,
                 "wrapText": True,
                 "autoHeight": True,
-                "maxWidth": 100,
+                "maxWidth": 80,
             },
             # {
             #     "headerName": "内容分類",
@@ -1072,4 +1123,4 @@ st.markdown(
     "プログラムソースは、-議員見える化プロジェクト@東京都中央区 https://bit.ly/3Bqfcy0 を作られた[ほづみゆうき](https://twitter.com/ninofku)さんにご提供いただきました。GlideやStreamlitを駆使して華麗にWEBアプリで可視化する、その技術力と行動力に敬服します。ありがとうございます。"
 )
 
-st.markdown("20221015　ver. 0.9.31　分析ボタン（処理中断）追加")
+st.markdown("20221015　ver.0.9.31　分析ボタン（処理中断）追加")
