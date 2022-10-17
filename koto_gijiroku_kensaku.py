@@ -107,7 +107,18 @@ word_list = []
 while node:
     word_type = node.feature.split(",")[0]
     # if word_type == '名詞':
-    if word_type in ["名詞", "固有名詞", "地域", "組織", "人名", "一般"]:
+    # if word_type in ["名詞", "固有名詞", "地域", "組織", "人名", "一般"]:
+    if word_type in [
+        "名詞",
+        "固有名詞",
+        "地域",
+        "組織",
+        "人名",
+        "一般",
+        (not "非自立"),
+        (not "代名詞"),
+        (not "数"),
+    ]:
         # if word_type in ["名詞", "代名詞"]:
         # if word_type in ["動詞", "形容詞", "名詞"]:
         # if word_type in ["名詞", "代名詞", "形容詞"]:
@@ -648,6 +659,13 @@ stpwds = [
     "審査",
     "報告書",
     "旨",
+    "〇〇",
+    "条項",
+    "運営",
+    "項",
+    "規定",
+    "報告",
+    "周知",
 ]
 
 # wc= WordCloud(
@@ -753,6 +771,7 @@ grid_options = {
             "field": "内容分類",
             "suppressSizeToFit": True,
             "autoHeight": True,
+            "maxWidth": 80,
         },
         {
             "headerName": "質問者",
