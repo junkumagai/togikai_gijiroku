@@ -81,7 +81,7 @@ f.close()
 option_selected_i_txt = open("temp_iinkai.txt", encoding="utf8").read()
 
 # st.markdown(' ##### :date:「年度」での絞り込み')
-with st.expander("「期間」を選択（初期値は全ての年度）", False):
+with st.expander("「期間」を選択（初期値は2019年から）", False):
     # 年度選択
     start_year, end_year = st.select_slider(
         "分析対象期間をスライダーで絞り込むことができます。",
@@ -107,7 +107,7 @@ with st.expander("「期間」を選択（初期値は全ての年度）", False
             "2021",
             "2022",
         ],
-        value=("2003", "2022"),
+        value=("2019", "2022"),
     )
 
     start_year = int(start_year)

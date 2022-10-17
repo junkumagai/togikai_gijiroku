@@ -23,14 +23,16 @@ st.set_page_config(layout="centered", initial_sidebar_state="auto")
 st.title("議事録けんさく＠江東区")
 
 logs = pd.read_csv(
-    "./koto_gijiroku2015-2022.9.csv", encoding="UTF-8"
+    "./koto_gijiroku2015-2022.9.csv", encoding="UTF-8", low_memory=False
 )  # dataframeとしてcsvを読み込み
 
 logs2 = logs[["年月日", "人分類", "内容分類", "質問", "回答", "会議", "内容", "年度", "文字数"]]
 
-option_selected_l = st.text_input("検索するキーワードを入力（初期値は「児童手当」）", "児童手当")
+option_selected_l = st.text_input(
+    "検索キーワード（初期値は「児童手当」、英数字は「ＰＴＡ」のように全角で入力。）", "児童手当"
+)
 # st.markdown(' ##### :date:「年度」での絞り込み')
-with st.expander("「期間」を選択（初期値は全ての年度）", True):
+with st.expander("「期間」を選択（初期値は2019年から）", True):
     # 年度選択
     start_year, end_year = st.select_slider(
         "分析対象期間をスライダーで絞り込むことができます。",
@@ -56,7 +58,7 @@ with st.expander("「期間」を選択（初期値は全ての年度）", True)
             "2021",
             "2022",
         ],
-        value=("2003", "2022"),
+        value=("2019", "2022"),
     )
 start_year = int(start_year)
 end_year = int(end_year)
@@ -677,7 +679,7 @@ wc = WordCloud(
     font_path=font_path,
     prefer_horizontal=0.94,
     # include_numbers=False,
-    max_words=400,
+    max_words=300,
 )
 
 # wc = WordCloud(
@@ -746,12 +748,12 @@ grid_options = {
             "autoHeight": True,
             "maxWidth": 80,
         },
-        # {
-        #     "headerName": "内容分類",
-        #     "field": "内容分類",
-        #     "suppressSizeToFit": True,
-        #     "autoHeight": True,
-        # },
+        {
+            "headerName": "内容分類",
+            "field": "内容分類",
+            "suppressSizeToFit": True,
+            "autoHeight": True,
+        },
         {
             "headerName": "質問者",
             "field": "質問",
