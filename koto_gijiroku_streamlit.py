@@ -21,7 +21,7 @@ st.title("発言見える化＠江東区")
 
 
 logs = pd.read_csv(
-    "./koto_gijiroku2015-2022.9.csv", encoding="UTF-8"
+    "./koto_gijiroku2015-2022.9.csv", encoding="UTF-8", low_memory=False
 )  # dataframeとしてcsvを読み込み
 giin_list_temp = pd.read_csv("./koto_giin2015-2021.csv", encoding="UTF-8")
 giin_list = giin_list_temp["氏名"]
@@ -1130,4 +1130,6 @@ st.markdown(
     "プログラムソースは、-議員見える化プロジェクト@東京都中央区 https://bit.ly/3Bqfcy0 を作られた[ほづみゆうき](https://twitter.com/ninofku)さんにご提供いただきました。GlideやStreamlitを駆使して華麗にWEBアプリで可視化する、その技術力と行動力に敬服します。ありがとうございます。"
 )
 
-st.markdown("20221015　ver.0.9.31　分析ボタン（処理中断）追加")
+st.caption(
+    "【更新履歴】20221017　ver.0.9.32　使用帯域を調整、20221015　ver.0.9.31　分析ボタン（処理中断）追加"
+)
