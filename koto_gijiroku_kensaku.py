@@ -740,7 +740,7 @@ fig = px.bar(
     color="内容分類",
     text="文字数",
     # height=400,
-    width=320,
+    width=480,
     orientation="h",
 )
 # fig.update_layout(barmode='stack', xaxis={'文字数':'category ascending'})
