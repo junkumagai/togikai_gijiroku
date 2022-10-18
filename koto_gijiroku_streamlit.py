@@ -1124,9 +1124,9 @@ with st.expander("解析対象のテキスト", True):
             },
         ],
     }
-    AgGrid(logs_contents_temp_show, grid_options)
+    AgGrid(logs_contents_temp_show, grid_options, use_container_width=True)
 
-print("occurrence of substring ats:", words.count("ats"))
+# print("occurrence of substring ats:", words.count("ats"))
 
 st.subheader("感謝")
 st.markdown(
