@@ -709,7 +709,7 @@ wc = WordCloud(
 # )
 wc.generate(words)
 wc.to_file("wc.png")
-st.image("wc.png")
+st.image("wc.png", use_column_width=True)
 # 最後尾に追加
 t2 = time.time()
 min, sec = sec_to_min_sec(t2 - t1)
@@ -739,14 +739,12 @@ fig = px.bar(
     y="人分類",
     color="内容分類",
     text="文字数",
-    # height=800,
-    # width=640,
+    # height=400,
+    width=320,
     orientation="h",
 )
 # fig.update_layout(barmode='stack', xaxis={'文字数':'category ascending'})
-fig.update_layout(
-    barmode="stack", yaxis={"categoryorder": "total ascending"}, autosize=True
-)
+fig.update_layout(barmode="stack", yaxis={"categoryorder": "total ascending"})
 fig
 
 
