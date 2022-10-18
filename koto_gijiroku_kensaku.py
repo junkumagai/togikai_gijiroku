@@ -807,7 +807,7 @@ grid_options = {
     ],
 }
 
-AgGrid(selected_l, grid_options)
+AgGrid(selected_l, grid_options, use_container_width=True)
 
 
 st.subheader("感謝")

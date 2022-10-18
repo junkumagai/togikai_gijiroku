@@ -15,7 +15,7 @@ from wordcloud import WordCloud
 mecab = MeCab.Tagger()
 font_path = "ShipporiMinchoB1-ExtraBold.ttf"
 
-# st.set_page_config(layout="centered", initial_sidebar_state="auto")
+st.set_page_config(layout="centered", initial_sidebar_state="auto")
 # st.set_page_config(layout="centered")
 
 st.title("発言見える化＠江東区")
@@ -1029,10 +1029,10 @@ c_map = random.choice(
 
 wc = WordCloud(
     stopwords=stpwds,
-    # width=720,
-    # height=1280,
-    width=640,
-    height=960,
+    width=720,
+    height=1280,
+    # width=640,
+    # height=960,
     background_color="white",
     colormap="Dark2",
     # background_color=bg_color,
