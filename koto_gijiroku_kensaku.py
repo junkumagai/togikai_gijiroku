@@ -1,3 +1,4 @@
+# coding: utf-8
 import time
 
 import MeCab
@@ -145,7 +146,7 @@ dt_now = datetime.now(JST).strftime("%Y/%m/%d %H:%M:%S")
 st.write(
     "【キーワード】",
     option_selected_l,
-    "【期間】",
+    "　【期間】",
     str(start_year),
     "-",
     str(end_year),
@@ -815,4 +816,4 @@ st.markdown(
     "プログラムソースは、-議員見える化プロジェクト@東京都中央区 https://bit.ly/3Bqfcy0 を作られた[ほづみゆうき](https://twitter.com/ninofku)さんにご提供いただきました。GlideやStreamlitを駆使して華麗にWEBアプリで可視化する、その技術力と行動力に敬服します。ありがとうございます。"
 )
 
-st.caption("【更新履歴】20221017　ver.0.9.32　使用帯域を調整、20221016　ver.0.9.9　ベータ版リリース")
+st.caption("【更新履歴】20221017 ver.0.9.32 使用帯域を調整、20221016 ver.0.9.9 ベータ版リリース")
