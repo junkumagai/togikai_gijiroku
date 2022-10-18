@@ -1045,7 +1045,7 @@ wc = WordCloud(
 )
 wc.generate(words)
 wc.to_file("wc.png")
-st.image("wc.png")
+st.image("wc.png", use_column_width=True)
 
 # 最後尾に追加
 t2 = time.time()
