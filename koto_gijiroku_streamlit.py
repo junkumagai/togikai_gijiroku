@@ -1029,8 +1029,10 @@ c_map = random.choice(
 
 wc = WordCloud(
     stopwords=stpwds,
-    width=720,
-    height=1280,
+    # width=720,
+    # height=1280,
+    width=640,
+    height=960,
     background_color="white",
     colormap="Dark2",
     # background_color=bg_color,
