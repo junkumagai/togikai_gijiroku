@@ -1047,8 +1047,9 @@ wc = WordCloud(
     max_words=300,
 )
 wc.generate(words)
-wc.to_file("wc.png")
-st.image("wc.png", use_column_width=True)
+with st.spinner("画像生成中です..."):
+    wc.to_file("wc.png")
+    st.image("wc.png", use_column_width=True)
 
 # 最後尾に追加
 t2 = time.time()
@@ -1070,6 +1071,16 @@ with st.expander("発言文字数の推移", True):
     st.bar_chart(logs_contents_temp_moji, width=0, use_container_width=True)
     # table作成
 with st.expander("解析対象のテキスト", True):
+
+    # ダウンロードモジュール
+    # -Streamlit入門 – ウィジェットの使い方(前編) | 楽しみながら理解するAI・機械学習入門 https://bit.ly/3DmQ11x
+    # csv = df.to_csv().encode("SHIFT-JIS")
+    # st.download_button(
+    #     label="Data Download",
+    #     data=csv,
+    #     file_name="stock_price.csv",
+    #     mime="text/csv",
+    # )
 
     grid_options = {
         "columnDefs": [
